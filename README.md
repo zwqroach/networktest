@@ -8,5 +8,5 @@
 * 计划Windows版本,暂无
 
 * 本程序无图形界面，解压后在本目录右键打开终端
-* 👉 安装：sudo ./install
-* 👉 运行：cs
+    👉 安装：sudo ./install
+    👉 运行：cs
