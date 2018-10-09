@@ -1,0 +1,7 @@
+#! /bin/bash
+
+# 这是编译源码的脚本，安装方法见 README.md 文件
+
+cd code
+gcc Stated.c PingTest.c FindHost.c HHdev.c Localip.c main.c -o cs
+mv cs /usr/bin
