@@ -6,8 +6,6 @@
 * 光收适用型号：1101S4N 11000S4P
 * 运 行 平 台 ：Linux。或者已开启linux子系统的win10
 * 计划Windows版本,暂无
-
 * 本程序无图形界面，解压后在本目录右键打开终端
-
-👉 安装：sudo ./install
-👉 运行：cs
+* 👉 安装：sudo ./install
+* 👉 运行：cs
