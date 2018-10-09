@@ -84,7 +84,7 @@ void HuaHuan_() {
 	// printf("\t*\t\t\t\t    1101S4N 11000S4P  *\n");
 	printf("\t * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 
-	printf("\n     → 【1】单次配置一个设备 【2】连续配置多个设备 【3】返回主菜单\n\n选择配置方式：");
+	printf("\n     👉 【1】单次配置一个设备 【2】连续配置多个设备 【3】返回主菜单\n\n选择配置方式：");
 	while (mode != 1 && mode != 2) {
 		scanf("%d", &mode);
 		while (getchar() != '\n');
@@ -118,7 +118,7 @@ void Deploy_(void) {
 	char Cr_De_File[21];
 
 	Login_();
-	printf("\n\n\t 【1】配置普通模式    【2】配置业务vlan    【3】 修改设备ip");
+	printf("\n\n     👉 【1】配置普通模式   【2】配置业务vlan   【3】 修改设备ip");
 
 	printf("\n\n输入序号选择配置方式：");
 	while (Xuan_Ze != 1 && Xuan_Ze != 2 && Xuan_Ze != 3) {
