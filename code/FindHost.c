@@ -91,7 +91,6 @@ void FindHost_(void) {
 	time_t start, end;
 	int    Lian_Ji = 0, Tuo_Ji = 0;
 	char   HostIP[20], Cha_Zhao[50];
-
 	// 查找主机并统计消耗时间
 	printf("\n");
 	time(&start);

@@ -79,7 +79,7 @@ void HuahuanLight_() {
 	}
 }
 
-/********************    配置光收    ********************/
+/********************    选择配置模式    ********************/
 void Deploy_(void) {
 
 	int Xuan_Ze = 0;
@@ -104,7 +104,6 @@ void Deploy_(void) {
 					system(Cr_De_File);
 					sprintf(Cr_De_File, "rm -rf ./TempFiles");
 					system(Cr_De_File);
-					// printf("\n\t\t地址修改完成，修改本机ip后重新链接设备\n\n");
 					return;
 			default:
 					printf("只接受数字１～３，请重试：");
@@ -116,10 +115,10 @@ void Deploy_(void) {
 	sprintf(Cr_De_File, "./TempFiles");
 	system(Cr_De_File);
 	sprintf(Cr_De_File, "rm -rf ./TempFiles");
-	system(Cr_De_File);
+	system(Cr_De_File); // 配置完成后删除脚本
 }
 
-/*    创建自动登录    */
+/*    创建脚本    */
 void Login_(void) {
 
 	char Dev_Ip[20] = "192.192.4.2";

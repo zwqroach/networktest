@@ -65,7 +65,7 @@ int getLocalInfo_(void) {
     ifc.ifc_buf = (caddr_t)buf;
     if (!ioctl(fd, SIOCGIFCONF, (char *)&ifc)) {
         interfaceNum = ifc.ifc_len / sizeof(struct ifreq); // 获取所有接口
-        // printf("\n网络接口：%d个\n", interfaceNum-1);        // 打印接口数量，排除本地环回
+     // printf("\n网络接口：%d个\n", interfaceNum-1);        // 打印接口数量，排除本地环回
         while (interfaceNum-- > 0) {
             // 排除本地环回
             if(strcmp(buf[interfaceNum].ifr_name,"lo") == 0) {
@@ -123,7 +123,7 @@ int getLocalInfo_(void) {
                 return -1;
             }
 
-            /*//获取此接口的广播地址
+            /*//获取广播地址（不需要）
             if (!ioctl(fd, SIOCGIFBRDADDR, &buf[interfaceNum])) {
                 snprintf(broadAddr, sizeof(broadAddr), "%s",
                     (char *)inet_ntoa(((struct sockaddr_in *)&(buf[interfaceNum].ifr_broadaddr))->sin_addr));

@@ -44,7 +44,7 @@
 void PingTest_(void) {
 
 	int    frequency = 1000, bytes = 1000; // 设置ping包次数和字节大小默认值，如果要每次都清空输入值
-										   // 把它放到循环里面即可
+										   // 把它放到while循环里面即可
 	int    a, b, c, d;
 	char   len = 0, str[20], IpAddr[20], Ping_Test[45];
 	time_t start, end;

@@ -45,7 +45,6 @@ int main(void) {
 	/*	// 检查权限
 		char quanxian[8];
 		if (geteuid() != 0) {
-
 			sprintf(quanxian, "sudo -v");
 			system(quanxian);
 		}
