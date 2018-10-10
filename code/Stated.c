@@ -39,14 +39,14 @@
 #include <unistd.h>
 
 /** 回车键 用于跳过配置 **/
-extern char Enter_() {
+char Enter_() {
 	char Tiao_Guo = getchar();
 	ungetc(Tiao_Guo, stdin);
 	return Tiao_Guo;
 }
 
-/** 按任意键继续 **/
-extern int pause_( char* str) {
+/** 按任意键继续 **/   //(暂未调用)
+int pause_( char* str) {
 	struct termios oldt,newt;
 	int ch;
 	printf("%s\n",str);

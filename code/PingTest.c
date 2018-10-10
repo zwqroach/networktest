@@ -51,26 +51,21 @@ void PingTest_(void) {
 
 	printf("\n输入要测试的地址：");
 	while (Enter_() != '\n') {
-
 		fgets(str, 20, stdin);
 		len = strlen(str);
 		if (str[len - 1] == '\n') {
-
 			str[len - 1] = '\0';
 		}
 
 		if (sscanf(str, "%d.%d.%d.%d", &a, &b, &c, &d)==4
 			&& a >= 0 && a <= 255 && b >= 0 && b <= 255
 			&& c >= 0 && c <= 255 && d >= 0 && d <= 255) {
-
 			sprintf(IpAddr, "%d.%d.%d.%d", a, b, c, d);
 			printf("\n默认发送1000次数据包、每包1000字节 按回车使用默认值\n");
 			printf("数据包次数：");
 			while (Enter_() != '\n') {
-
 				scanf("%d", &frequency);
 				if (0 >= frequency) {
-
 					printf("只能是大于0的数字：");
 					while (getchar() != '\n');
 				}
@@ -78,17 +73,14 @@ void PingTest_(void) {
 
 			printf("数据包大小：");
 			while (Enter_() != '\n') {
-
 				scanf("%d", &bytes);
 				if (bytes < 64 || bytes > 1005) {
-
 					printf("不能小于64或大于1004字节:");
 					while (getchar() != '\n');
 				}
 			} while(getchar()!='\n');
-			
-			if (strcmp(IpAddr, str) == 0) {
 
+			if (strcmp(IpAddr, str) == 0) {
 				time(&start); // 计时开始
 				sprintf(Ping_Test, "sudo ping -c%d -s%d -i0.01 %s", frequency, bytes-8, IpAddr);
 				system(Ping_Test);
@@ -97,30 +89,23 @@ void PingTest_(void) {
 				int second = (end - start) % 60;
 				printf("\n测试完成，用时");
 				if (minute <= 0) {
-
 					printf("%d秒。", second);
 				}
 				else {
-
 					if (second < 10) {
-
 						printf("%d分0%d秒。", minute, second);
 					}
 					else {
-
 						printf("%d分%d秒。", minute, second);
 					}
 				}
 			}
 			else {
-
 				printf("ip地址的格式不对！");
 			}
-
 			printf(" 按回车返回主菜单......\n输入新的地址继续测试：");
 		}
 		else {
-
 			printf("该地址无效，再试一次：");
 		}
 	}

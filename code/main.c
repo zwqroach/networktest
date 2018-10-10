@@ -56,11 +56,9 @@ int main(void) {
 
 		int Xuan_Ze = 0;
 		while (Xuan_Ze != 1 && Xuan_Ze != 2 && Xuan_Ze != 3) {
-
 			scanf(" %d", &Xuan_Ze);
 			while (getchar() != '\n'); // 防止输入非法字符造成死循环
 			switch (Xuan_Ze) {
-
 				case 1:
 					PingTest_();
 					break;
@@ -77,7 +75,7 @@ int main(void) {
 				case 5:
 					return 0;
 				default:
-					printf("只接受数字１～４：");
+					printf("只接受数字１～５：");
 					continue;
 			}
 		}

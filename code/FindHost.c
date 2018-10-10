@@ -49,21 +49,17 @@ void FindHost_(void) {
 
 	printf("\n输入网段，不包含地址：");
 	while (fgets(segment, 20, stdin)) {
-
 		len = strlen(segment);
 		if (segment[len - 1] == '\n') {
-
 			segment[len - 1] = '\0';
 		}
 
 		if (sscanf(segment, "%d.%d.%d", &a, &b, &c)==3
 			&& a >= 0 && a <= 255 && b >= 0 && b <= 255 && c >= 0 && c <= 255) {
-
 			sprintf(intranet, "%d.%d.%d", a, b, c);
 			break;
 		}
 		else {
-
 			printf("网段不正确，重新输入：");
 		}
 	}
@@ -73,27 +69,21 @@ void FindHost_(void) {
 	while (Enter_() != '\n') {
 		scanf("%d %d", &min, &max);
 		if (min < 1 )       {
-
 			printf("起始地址小于  1     ：");
 		}
 		else if (min > 254) {
-
 			printf("起始地址大于 254    ：");
 		}
 		else if (max < 1)   {
-
 			printf("结束地址小于  1     ：");
 		}
 		else if (max > 254) {
-
 			printf("结束地址大于 254    ：");
 		}
 		else if (min > max) {
-
 			printf("起始地址大于结束地址：" );
 		}
 		else {
-
 			break;
 		}
 	} while (getchar()!='\n');
@@ -106,16 +96,13 @@ void FindHost_(void) {
 	printf("\n");
 	time(&start);
 	for (int addr = min; addr <= max; addr++) {
-
 		sprintf(HostIP, "%s.%d", intranet, addr);
 		sprintf(Cha_Zhao, "ping -c1 -w1 -i0.2 %s > /dev/null", HostIP);
 		if (WEXITSTATUS(system(Cha_Zhao)) == 0) {	// WEXITSTATUS()函数 判断ping命令的返回值
-
 			printf("    已上线ip >  %-15s\n", HostIP);
 			Lian_Ji++;
 		}
 		else {
-
 			// printf("    %-15s ···离线\n", HostIP);
 			Tuo_Ji++;
 		}
@@ -127,17 +114,13 @@ void FindHost_(void) {
 	printf("\n----- %s.%d～%d -----\n", intranet, min, max);
 	printf("用时");
 	if (minute <= 0) {
-
 		printf("%d秒", second);
 	}
 	else {
-
 		if (second < 10) {
-
 			printf("%d分0%d秒", minute, second);
 		}
 		else {
-
 			printf("%d分%d秒", minute, second);
 		}
 	}
