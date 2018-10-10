@@ -65,8 +65,8 @@ int getLocalInfo_(void) {
     ifc.ifc_buf = (caddr_t)buf;
     if (!ioctl(fd, SIOCGIFCONF, (char *)&ifc)) {
 
-        interfaceNum = ifc.ifc_len / sizeof(struct ifreq);
-        // printf("网络接口：%d个\n", interfaceNum-1); // 打印接口数，排除本地环回
+        interfaceNum = ifc.ifc_len / sizeof(struct ifreq); // 获取所有接口
+        printf("\n网络接口：%d个\n", interfaceNum-1);        // 打印接口数量，排除本地环回
         while (interfaceNum-- > 0) {
             // 排除本地环回
             if(strcmp(buf[interfaceNum].ifr_name,"lo") == 0) {
@@ -76,7 +76,7 @@ int getLocalInfo_(void) {
 
             printf("设备名称: %s\n", buf[interfaceNum].ifr_name);
 
-            //忽略未启动或未运行的接口
+            //忽略未运行的接口
             ifrcopy = buf[interfaceNum];
             if (ioctl(fd, SIOCGIFFLAGS, &ifrcopy)) {
 
@@ -85,7 +85,7 @@ int getLocalInfo_(void) {
                 return -1;
             }
 
-            //获取此接口的mac
+            //获取MAC地址
             if (!ioctl(fd, SIOCGIFHWADDR, (char *)(&buf[interfaceNum]))) {
 
                 memset(mac, 0, sizeof(mac));
@@ -105,7 +105,7 @@ int getLocalInfo_(void) {
                 return -1;
             }
 
-            //获取此接口的IP
+            //获取IP地址
             if (!ioctl(fd, SIOCGIFADDR, (char *)&buf[interfaceNum])) {
 
                 snprintf(ip, sizeof(ip), "%s",
@@ -119,7 +119,7 @@ int getLocalInfo_(void) {
                 return -1;
             }
 
-            //获取此接口的子网掩码
+            //获取子网掩码
             if (!ioctl(fd, SIOCGIFNETMASK, &buf[interfaceNum])) {
 
                 snprintf(subnetMask, sizeof(subnetMask), "%s",
@@ -147,26 +147,18 @@ int getLocalInfo_(void) {
                 return -1;
             } */
         }
-
-
     }
     else {
-
         printf("ioctl: %s [%s:%d]\n", strerror(errno), __FILE__, __LINE__);
         close(fd);
         return -1;
     }
 
     close(fd);
-    return 0;
-}
 
-
-// 获取默认网关
-void GetGateWay_() {
-
+    // 获取默认网关
     FILE *fp;
-    char buf[512];
+    char bufb[512];
     char cmd[128];
     char gateway[30];
     char *tmp;
@@ -176,17 +168,17 @@ void GetGateWay_() {
     if(NULL == fp) {
 
         perror("popen error");
-        return;
+        return -1;
     }
-    while(fgets(buf, sizeof(buf), fp) != NULL) {
+    while(fgets(bufb, sizeof(bufb), fp) != NULL) {
 
-        tmp =buf;
+        tmp = bufb;
         while(*tmp && isspace(*tmp))
             tmp++;
         if(strncmp(tmp, "default", strlen("default")) == 0)
             break;
     }
-    sscanf(buf, "%*s%*s%s", gateway);
+    sscanf(bufb, "%*s%*s%s", gateway);
     printf("默认网关：%s\n", gateway);
     pclose(fp);
 }

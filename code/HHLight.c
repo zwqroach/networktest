@@ -41,46 +41,14 @@
 #include <sys/stat.h>  // 调用chmod()函数，赋予文件执行权限
 
 /********************    配置光收    ********************/
-void HuaHuan_() {
-
- /*
-	char len = 0;
-	int  a, b, c, d;
-
-	printf("\n     telnet默认地址：%s\t请确保设备'NM'接口已正确链接"
-		   "\n     本机ip设置：192.192.4.5~254/24\n", Dev_Ip);
-	printf("\n按‘回车’键使用默认地址   ↓ ·新的ip· ↓\n若设备地址已变更，输入：");
-	while (Enter_() != '\n') {
-
-		fgets(Dev_Ip, 20, stdin);
-		len = strlen(Dev_Ip);
-		if (Dev_Ip[len - 1] == '\n') {
-
-			Dev_Ip[len - 1] = '\0'; // 末位的换行符替换为结束符
-		}
-
-		if(sscanf(Dev_Ip, "%d.%d.%d.%d", &a, &b, &c, &d)==4
-			&& a >= 0 && a <= 255 && b >= 0 && b <= 255
-			&& c >= 0 && c <= 255 && d >= 0 && d <= 255) {
-
-			sprintf(Dev_Ip, "%d.%d.%d.%d", a, b, c, d); // 把格式化的数据写入字符串 Dev_Ip
-			break;
-		}
-		else {
-
-			printf("ip地址错误，请重新输入：");
-		}
-	}
- */
-
-
+void HuahuanLight_() {
 
 	int  mode = 0;
 	char proceed = 'y';
 	char Cr_De_File[21];
 
 	printf("\n\n\t * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
-	printf("\t*  华环智能光收配置脚本，适用型号： 1101S4N 11000S4P  *\n");
+	printf("\t*  华环光收自动配置程序，适用型号： 1101S4N 11000S4P  *\n");
 	// printf("\t*\t\t\t\t    1101S4N 11000S4P  *\n");
 	printf("\t * * * * * * * * * * * * * * * * * * * * * * * * * * *\n");
 
@@ -118,7 +86,7 @@ void Deploy_(void) {
 	char Cr_De_File[21];
 
 	Login_();
-	printf("\n\n     👉 【1】配置普通模式   【2】配置业务vlan   【3】 修改设备ip");
+	printf("\n\n\t👉 【1】配置普通模式   【2】配置业务vlan   【3】 修改设备ip");
 
 	printf("\n\n输入序号选择配置方式：");
 	while (Xuan_Ze != 1 && Xuan_Ze != 2 && Xuan_Ze != 3) {
@@ -157,7 +125,35 @@ void Deploy_(void) {
 void Login_(void) {
 
 	char Dev_Ip[20] = "192.192.4.2";
+ /*
+	char len = 0;
+	int  a, b, c, d;
 
+	printf("\n     telnet默认地址：%s\t请确保设备'NM'接口已正确链接"
+		   "\n     本机ip设置：192.192.4.5~254/24\n", Dev_Ip);
+	printf("\n按‘回车’键使用默认地址   ↓ ·新的ip· ↓\n若设备地址已变更，输入：");
+	while (Enter_() != '\n') {
+
+		fgets(Dev_Ip, 20, stdin);
+		len = strlen(Dev_Ip);
+		if (Dev_Ip[len - 1] == '\n') {
+
+			Dev_Ip[len - 1] = '\0'; // 末位的换行符替换为结束符
+		}
+
+		if(sscanf(Dev_Ip, "%d.%d.%d.%d", &a, &b, &c, &d)==4
+			&& a >= 0 && a <= 255 && b >= 0 && b <= 255
+			&& c >= 0 && c <= 255 && d >= 0 && d <= 255) {
+
+			sprintf(Dev_Ip, "%d.%d.%d.%d", a, b, c, d); // 把格式化的数据写入字符串 Dev_Ip
+			break;
+		}
+		else {
+
+			printf("ip地址错误，请重新输入：");
+		}
+	}
+ */
 	TempFiles = fopen("./TempFiles", "w+");		// 创建脚本文件
 	chmod("./TempFiles", S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH); // 赋予读、写、执行权限
 	fprintf(TempFiles, "#!/usr/bin/expect\nset timeout -1\nspawn telnet %s\n", Dev_Ip);

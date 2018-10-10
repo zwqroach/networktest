@@ -43,7 +43,7 @@ FILE *TempFiles;
 
 
 /** 华环光收 **/
-void HuaHuan_();             // 华环主函数
+void HuahuanLight_();             // 华环主函数
 void Deploy_();              // 配置光收
 void AlterIp_();             // 更换设备IP
 void Login_();               // 登录设备
@@ -56,8 +56,7 @@ void PingTest_();            // ping测试
 void FindHost_();            // 查找在线主机
 
 /** 获取本地网络信息 **/
-int  getLocalInfo_();        // 获取MAC地址、IP、掩码
-char GetGateWay_();          // 获取默认网关
+int  getLocalInfo_();        // MAC、IP、掩码和网关
 
 /** 回车键 用于跳过配置 **/
 char Enter_();

@@ -50,10 +50,9 @@ int main(void) {
 			system(quanxian);
 		}
 	*/
- 
-		printf("\n\n\t【1】 ping 测试  【2】查看在线主机  【3】配置华环智能光收\n\n\t"
-		"【4】显示本机IP  【5】退出");
-		printf("\n\n输入序号选择执行：");
+		printf("\n\n\t👉 【1】 ping 测试 【2】查看在线主机  【3】配置华环智能光收\n\n\t"
+					 "👉 【4】显示本机IP 【5】退出");
+		printf("\n\n输入序号选择任务：");
 
 		int Xuan_Ze = 0;
 		while (Xuan_Ze != 1 && Xuan_Ze != 2 && Xuan_Ze != 3) {
@@ -63,23 +62,18 @@ int main(void) {
 			switch (Xuan_Ze) {
 
 				case 1:
-					// system("clear");
 					PingTest_();
 					break;
 				case 2:
-					// system("clear");
 					FindHost_();
 					break;
 				case 3:
 					system("clear");
-					HuaHuan_();
+					HuahuanLight_();
 					break;
 				case 4:
-					printf("\n");
 					getLocalInfo_();
-					GetGateWay_();
-					printf("\n");
-					return 0;
+					main();
 				case 5:
 					return 0;
 				default:
@@ -88,6 +82,4 @@ int main(void) {
 			}
 		}
 	}
-
-	return 0;
 }
