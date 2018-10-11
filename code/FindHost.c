@@ -43,85 +43,85 @@
 /********************    查找在线主机    ********************/
 void FindHost_(void) {
 
-	int  a = 0, b = 0, c = 0;
-	char len = 0;
-	char segment[20], intranet[20];
+    int  a = 0, b = 0, c = 0;
+    char len = 0;
+    char segment[20], intranet[20];
 
-	printf("\n输入网段，不包含地址：");
-	while (fgets(segment, 20, stdin)) {
-		len = strlen(segment);
-		if (segment[len - 1] == '\n') {
-			segment[len - 1] = '\0';
-		}
+    printf("\n输入网段，不包含地址：");
+    while (fgets(segment, 20, stdin)) {
+        len = strlen(segment);
+        if (segment[len - 1] == '\n') {
+            segment[len - 1] = '\0';
+        }
 
-		if (sscanf(segment, "%d.%d.%d", &a, &b, &c)==3
-			&& a >= 0 && a <= 255 && b >= 0 && b <= 255 && c >= 0 && c <= 255) {
-			sprintf(intranet, "%d.%d.%d", a, b, c);
-			break;
-		}
-		else {
-			printf("网段不正确，重新输入：");
-		}
-	}
+        if (sscanf(segment, "%d.%d.%d", &a, &b, &c)==3
+            && a >= 0 && a <= 255 && b >= 0 && b <= 255 && c >= 0 && c <= 255) {
+            sprintf(intranet, "%d.%d.%d", a, b, c);
+            break;
+        }
+        else {
+            printf("网段不正确，重新输入：");
+        }
+    }
 
-	int min = 1, max = 254;
-	printf("默认查找范围 1～254 ：");
-	while (Enter_() != '\n') {
-		scanf("%d %d", &min, &max);
-		if (min < 1 )       {
-			printf("起始地址小于  1     ：");
-		}
-		else if (min > 254) {
-			printf("起始地址大于 254    ：");
-		}
-		else if (max < 1)   {
-			printf("结束地址小于  1     ：");
-		}
-		else if (max > 254) {
-			printf("结束地址大于 254    ：");
-		}
-		else if (min > max) {
-			printf("起始地址大于结束地址：" );
-		}
-		else {
-			break;
-		}
-	} while (getchar()!='\n');
+    int min = 1, max = 254;
+    printf("默认查找范围 1～254 ：");
+    while (Enter_() != '\n') {
+        scanf("%d %d", &min, &max);
+        if (min < 1 )       {
+            printf("起始地址小于  1     ：");
+        }
+        else if (min > 254) {
+            printf("起始地址大于 254    ：");
+        }
+        else if (max < 1)   {
+            printf("结束地址小于  1     ：");
+        }
+        else if (max > 254) {
+            printf("结束地址大于 254    ：");
+        }
+        else if (min > max) {
+            printf("起始地址大于结束地址：" );
+        }
+        else {
+            break;
+        }
+    } while (getchar()!='\n');
 
-	time_t start, end;
-	int    Lian_Ji = 0, Tuo_Ji = 0;
-	char   HostIP[20], Cha_Zhao[50];
-	// 查找主机并统计消耗时间
-	printf("\n");
-	time(&start);
-	for (int addr = min; addr <= max; addr++) {
-		sprintf(HostIP, "%s.%d", intranet, addr);
-		sprintf(Cha_Zhao, "ping -c1 -w1 -i0.2 %s > /dev/null", HostIP);
-		if (WEXITSTATUS(system(Cha_Zhao)) == 0) {	// WEXITSTATUS()函数 判断ping命令的返回值
-			printf("    已上线ip >  %-15s\n", HostIP);
-			Lian_Ji++;
-		}
-		else {
-			// printf("    %-15s ···离线\n", HostIP);
-			Tuo_Ji++;
-		}
-	}
-	system(Cha_Zhao);
-	time(&end);
-	int minute = (end - start) / 60;
-	int second = (end - start) % 60;
-	printf("\n----- %s.%d～%d -----\n", intranet, min, max);
-	printf("用时");
-	if (minute <= 0) {
-		printf("%d秒", second);
-	}
-	else {
-		if (second < 10) {
-			printf("%d分0%d秒", minute, second);
-		}
-		else {
-			printf("%d分%d秒", minute, second);
-		}
-	}
-	printf("  查找%d个主机，%d个在线，%d个离线", Lian_Ji+Tuo_Ji, Lian_Ji, Tuo_Ji);
+    time_t start, end;
+    int    Lian_Ji = 0, Tuo_Ji = 0;
+    char   HostIP[20], Cha_Zhao[50];
+    // 查找主机并统计消耗时间
+    printf("\n");
+    time(&start);
+    for (int addr = min; addr <= max; addr++) {
+        sprintf(HostIP, "%s.%d", intranet, addr);
+        sprintf(Cha_Zhao, "ping -c1 -w1 -i0.2 %s > /dev/null", HostIP);
+        if (WEXITSTATUS(system(Cha_Zhao)) == 0) {    // WEXITSTATUS()函数 判断ping命令的返回值
+            printf("    已上线ip >  %-15s\n", HostIP);
+            Lian_Ji++;
+        }
+        else {
+            // printf("    %-15s ···离线\n", HostIP);
+            Tuo_Ji++;
+        }
+    }
+    system(Cha_Zhao);
+    time(&end);
+    int minute = (end - start) / 60;
+    int second = (end - start) % 60;
+    printf("\n----- %s.%d～%d -----\n", intranet, min, max);
+    printf("用时");
+    if (minute <= 0) {
+        printf("%d秒", second);
+    }
+    else {
+        if (second < 10) {
+            printf("%d分0%d秒", minute, second);
+        }
+        else {
+            printf("%d分%d秒", minute, second);
+        }
+    }
+    printf("  查找%d个主机，%d个在线，%d个离线", Lian_Ji+Tuo_Ji, Lian_Ji, Tuo_Ji);
 }
