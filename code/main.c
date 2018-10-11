@@ -59,23 +59,23 @@ int main(void) {
             while (getchar() != '\n'); // 防止输入非法字符造成死循环
             switch (Xuan_Ze) {
                 case 1:
-                    PingTest_();
-                    break;
+                        PingTest_();
+                        break;
                 case 2:
-                    FindHost_();
-                    break;
+                        FindHost_();
+                        break;
                 case 3:
-                    system("clear");
-                    HuahuanLight_();
-                    break;
+                        system("clear");
+                        HuahuanLight_();
+                        break;
                 case 4:
-                    getLocalInfo_();
-                    main();
+                        getLocalInfo_();
+                        main();
                 case 5:
-                    return 0;
+                        return 0;
                 default:
                     printf("只接受数字１～５：");
-                    continue;
+                        continue;
             }
         }
     }
