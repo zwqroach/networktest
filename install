@@ -2,6 +2,6 @@
 
 # 这是编译源码的脚本，安装方法见 README.md 文件
 
-cd code
+cd src
 gcc Stated.c PingTest.c FindHost.c HHLight.c Localip.c main.c -o cs
 mv cs /usr/bin
