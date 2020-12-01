@@ -96,7 +96,7 @@ void FindHost_(void) {
     time(&start);
     for (int addr = min; addr <= max; addr++) {
         sprintf(HostIP, "%s.%d", intranet, addr);
-        sprintf(Cha_Zhao, "ping -c1 -w1 -i0.2 %s > /dev/null", HostIP);
+        sprintf(Cha_Zhao, "sudo ping -c1 -w1 -i0.01 %s > /dev/null", HostIP);
         if (WEXITSTATUS(system(Cha_Zhao)) == 0) {    // WEXITSTATUS()函数 判断ping命令的返回值
             printf("    已上线ip >  %-15s\n", HostIP);
             Lian_Ji++;
