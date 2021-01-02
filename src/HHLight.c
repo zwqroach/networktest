@@ -153,7 +153,7 @@ void Login_(void) {
     fprintf(TempFiles, "expect \"Username:\" {send \"admin\\r\"}\nexec sleep 0.5\n");
     fprintf(TempFiles, "expect \"Password:\" {send \"admin\\r\"}\nexec sleep 0.5\n");
     fprintf(TempFiles, "expect \"CLI>\" {send \"enable\\r\"}\nexec sleep 0.5\n");
-    fprintf(TempFiles, "expect \"Password:\" {send \"HuaHuan_.com\\r\"}\nexec sleep 0.5\n");
+    fprintf(TempFiles, "expect \"Password:\" {send \"huahuan.com\\r\"}\nexec sleep 0.5\n");
     fprintf(TempFiles, "expect \"CLI#\" {send \"configure\\r\"}\nexec sleep 0.5\n");
     fprintf(TempFiles, "expect \"CLI(config)#\" {send \"no ip address dhcp\\r\"}\nexec sleep 0.5\n");
     fclose(TempFiles);
@@ -226,52 +226,52 @@ void UpVlan_(void) {
 
     // 写入vlan
     TempFiles = fopen("./TempFiles", "a");
-    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan mode 802.1Q\\r\"}\nexec sleep 0.9\n"); // 保留启用vlan，以防vlan被禁用
-    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"no vlan all\\r\"}\nexec sleep 0.9\n");
+    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan mode 802.1Q\\r\"}\nexec sleep 1.5\n"); // 保留启用vlan，以防vlan被禁用
+    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"no vlan all\\r\"}\nexec sleep 1.5\n");
     if (Dian_Kou1) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou1);
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou1);
     }
     if (Dian_Kou2) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou2);
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou2);
     }
     if (Dian_Kou3) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou3);
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou3);
     }
 
     // 启用光口,设置为 trunk 模式
-    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface fx1\\r\"}\nexec sleep 0.9\n");
-    fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"speed 100\\r\"}\nexec sleep 0.9\n");
-    fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port link-type trunk\\r\"}\nexec sleep 0.9\n");
+    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface fx1\\r\"}\nexec sleep 1.5\n");
+    //fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"speed 100\\r\"}\nexec sleep 1.5\n"); //设置光口为100M模式
+    fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port link-type trunk\\r\"}\nexec sleep 1.5\n");
     if (Dian_Kou1) {
-        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou1);
+        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou1);
     }
     if (Dian_Kou2) {
-        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou2);
+        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou2);
     }
     if (Dian_Kou3) {
-        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou3);
+        fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"port trunk add-vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou3);
     }
-    fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"exit\\r\"}\nexec sleep 0.9\n");
+    fprintf(TempFiles, "expect \"CLI(config-if.fx.1)#\" {send \"exit\\r\"}\nexec sleep 1.5\n");
 
     // 启用电口,设置为 access 模式
     if (Dian_Kou1) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx1\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"port link-type access\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"port pvid %d\\r\"}\nexec sleep 0.9\n", Dian_Kou1);
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"exit\\r\"}\nexec sleep 0.9\n");
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx1\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"port link-type access\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"port pvid %d\\r\"}\nexec sleep 1.5\n", Dian_Kou1);
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.1)#\" {send \"exit\\r\"}\nexec sleep 1.5\n");
     }
     if (Dian_Kou2) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx2\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"port link-type access\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"port pvid %d\\r\"}\nexec sleep 0.9\n", Dian_Kou2);
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"exit\\r\"}\nexec sleep 0.9\n");
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx2\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"port link-type access\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"port pvid %d\\r\"}\nexec sleep 1.5\n", Dian_Kou2);
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.2)#\" {send \"exit\\r\"}\nexec sleep 1.5\n");
     }
     if (Dian_Kou3) {
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx3\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"port link-type access\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"port pvid %d\\r\"}\nexec sleep 0.9\n", Dian_Kou3);
-        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"exit\\r\"}\nexec sleep 0.9\n");
-        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"management-vlan %d\\r\"}\nexec sleep 0.9\n", Dian_Kou3);
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"interface tx3\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"port link-type access\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"port pvid %d\\r\"}\nexec sleep 1.5\n", Dian_Kou3);
+        fprintf(TempFiles, "expect \"CLI(config-if.tx.3)#\" {send \"exit\\r\"}\nexec sleep 1.5\n");
+        fprintf(TempFiles, "expect \"CLI(config)#\" {send \"management-vlan %d\\r\"}\nexec sleep 1.5\n", Dian_Kou3);
     }
     fclose(TempFiles);
 }
@@ -283,8 +283,8 @@ void Save_(void) {
     fprintf(TempFiles, "expect \"CLI(config)#\" {send \"write config-to curr\\r\"}\nexec sleep 1.5\n");
     fprintf(TempFiles, "expect \"Are you sure to write the configure to flash ? (Y/N)\" {send \"y\\r\"}\nexec sleep 1.5\n");
     fprintf(TempFiles, "expect \"CLI(config)#\" {send \"show ip\\r\"}\nexec sleep 1.5\n");
-    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"show vlan\\r\"}\nexec sleep 0.5\n");
-    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"exit\\r\"}\nexec sleep 0.5\n");
+    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"show vlan\\r\"}\nexec sleep 1.5\n");
+    fprintf(TempFiles, "expect \"CLI(config)#\" {send \"exit\\r\"}\nexec sleep 1.5\n");
     fprintf(TempFiles, "expect \"CLI#\" {send \"exit\\r\"}");
     fclose(TempFiles);
 }

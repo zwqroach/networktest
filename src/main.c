@@ -37,20 +37,19 @@
 #include "stated.h"
 #include <stdio.h>
 #include <stdlib.h>    // 调用系统命令
-#include <unistd.h>    // 调用geteuid()函数
+#include <unistd.h>    // 调用geteuid()函数,检测用户权限
 
 int main(void) {
 
-    while(1){
-    /*    // 检查权限
-        char quanxian[8];
-        if (geteuid() != 0) {
-            sprintf(quanxian, "sudo -v");
-            system(quanxian);
+    // 提升root权限
+    char quanxian[8];
+    if (geteuid() != 0) {
+        sprintf(quanxian, "sudo -v");
+        system(quanxian);
         }
-    */
-        printf("\n\n\t👉 【1】 ping 测试 【2】查看在线主机  【3】配置华环智能光收\n\n\t"
-                     "👉 【4】显示本机IP 【5】退出");
+
+    while(1){    
+        printf("\n1 👉 ping 测试\n2 👉 查看在线主机\n3 👉 配置华环智能光收\n4 👉 配置瑞斯康达智能光收\n5 👉 显示本机IP\n6 👉 退出");
         printf("\n\n输入序号选择任务：");
 
         int Xuan_Ze = 0;
@@ -69,12 +68,16 @@ int main(void) {
                         HuahuanLight_();
                         break;
                 case 4:
+                        system("clear");
+                        RaisecomLight_();
+                        break;
+                case 5:
                         getLocalInfo_();
                         main();
-                case 5:
+                case 6:
                         return 0;
                 default:
-                    printf("只接受数字１～５：");
+                    printf("只接受数字１～6：");
                         continue;
             }
         }

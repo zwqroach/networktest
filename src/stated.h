@@ -39,6 +39,7 @@
 
 /** 临时文件 **/
 FILE *TempFiles;
+FILE *TpFiles;
 
 /** 华环光收 **/
 void HuahuanLight_();    // 华环主函数
@@ -48,6 +49,11 @@ void Login_();           // 登录设备
 void Ordinary_();        // 配置普通模式
 void UpVlan_();          // 配置vlan
 void Save_();            // 保存配置
+
+/** 瑞斯康达光收 **/
+void RaisecomLight_();   // 瑞斯康达主函数
+void Login();           // 登录设备
+void UpVlan();          // 配置vlan
 
 /** 其他 **/
 void PingTest_();        // ping测试

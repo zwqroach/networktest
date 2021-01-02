@@ -65,13 +65,13 @@ int getLocalInfo_(void) {
     ifc.ifc_buf = (caddr_t)buf;
     if (!ioctl(fd, SIOCGIFCONF, (char *)&ifc)) {
         interfaceNum = ifc.ifc_len / sizeof(struct ifreq); // 获取所有接口
-     // printf("\n网络接口：%d个\n", interfaceNum-1);        // 打印接口数量，排除本地环回
+        printf("\n\n当前 %d 个活动的网络链接", interfaceNum-1);        // 打印接口数量，排除本地环回
         while (interfaceNum-- > 0) {
             // 排除本地环回
             if(strcmp(buf[interfaceNum].ifr_name,"lo") == 0) {
                 continue;
             }
-            printf("\n设备名称: %s\n", buf[interfaceNum].ifr_name);
+            printf("\n网卡名称: %s\n", buf[interfaceNum].ifr_name);
 
             //忽略未运行的接口
             ifrcopy = buf[interfaceNum];
@@ -91,7 +91,7 @@ int getLocalInfo_(void) {
                     (unsigned char)buf[interfaceNum].ifr_hwaddr.sa_data[3],
                     (unsigned char)buf[interfaceNum].ifr_hwaddr.sa_data[4],
                     (unsigned char)buf[interfaceNum].ifr_hwaddr.sa_data[5]);
-                printf("MAC 地址: %s\n", mac);
+                printf("设备 MAC: %s\n", mac);
             }
             else {
                 printf("ioctl: %s [%s:%d]\n", strerror(errno), __FILE__, __LINE__);
@@ -158,7 +158,7 @@ int getLocalInfo_(void) {
                 }
             }
             sscanf(bufb, "%*s%*s%s", gateway);
-            printf("默认网关：%s\n", gateway);
+            printf("默认网关: %s\n", gateway);
             pclose(fp); // （↑ 待观察 ↑）
         }
     }

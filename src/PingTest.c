@@ -49,6 +49,7 @@ void PingTest_(void) {
     int    frequency = 1000, bytes = 1000; // 设置ping包次数和字节大小默认值，如果要每次都清空输入值
                                            // 把它放到while循环里面即可
 
+
     printf("\n输入要测试的地址：");
     while (Enter_() != '\n') {
         fgets(str, 20, stdin);
@@ -87,7 +88,7 @@ void PingTest_(void) {
                 time(&end); // 计时结束
                 int minute = (end - start) / 60;
                 int second = (end - start) % 60;
-                printf("\n测试完成，用时");
+                printf("测试完成，用时");
                 if (minute <= 0) {
                     printf("%d秒。", second);
                 }
@@ -103,7 +104,8 @@ void PingTest_(void) {
             else {
                 printf("ip地址的格式不对！");
             }
-            printf(" 按回车返回主菜单......\n输入新的地址继续测试：");
+            //getLocalInfo_(); 显示本地IP信息
+            printf("按回车返回主菜单......\n\n输入新的地址继续测试：");
         }
         else {
             printf("该地址无效，再试一次：");
